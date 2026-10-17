@@ -56,10 +56,14 @@
     if (sheetId) document.getElementById('sheetSave').textContent = inWL(sheetId) ? '♥ Tersimpan' : '♡ Simpan';
   }
 
-  // day pills
+  // day pills (real dates, Monday-based week)
   function renderDays(){
+    var now = new Date();
+    var monday = new Date(now);
+    monday.setDate(now.getDate() - todayIdx);
     document.getElementById('dayPills').innerHTML = DAYS.map(function (d, i) {
-      return '<button class="day'+(i===curDay?' on':'')+'" data-d="'+i+'"><small>'+d.slice(0,3).toUpperCase()+'</small><strong>'+(i+1)+'</strong></button>';
+      var dt = new Date(monday); dt.setDate(monday.getDate() + i);
+      return '<button class="day'+(i===curDay?' on':'')+'" data-d="'+i+'"><small>'+d.slice(0,3).toUpperCase()+'</small><strong>'+dt.getDate()+'</strong></button>';
     }).join('');
     document.querySelectorAll('#dayPills .day').forEach(function (b) {
       b.addEventListener('click', function(){ curDay = +b.dataset.d; renderDays(); renderAir(); });
