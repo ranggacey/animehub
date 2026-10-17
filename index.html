@@ -3,168 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MANGAINK. — Nonton Anime, Donghua &amp; Baca Manga Tanpa Iklan</title>
+<title>animehub — v2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
-<header class="nav" id="top">
-  <a class="logo" href="#top">MANGA<span class="red">INK</span><i>.</i></a>
-  <nav class="nav-links" id="navLinks">
-    <a href="#trending">Anime</a>
-    <a href="#trending">Donghua</a>
-    <a href="#manga">Manga</a>
-    <a href="#jadwal">Jadwal</a>
+<div class="app">
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="side">
+    <a class="logo" href="#" data-view="beranda">animehub<span>.</span></a>
+    <nav class="side-nav">
+      <button class="sn active" data-view="beranda"><i>◉</i>Beranda</button>
+      <button class="sn" data-view="jelajah"><i>▦</i>Jelajah</button>
+      <button class="sn" data-view="jadwal"><i>◷</i>Jadwal</button>
+      <button class="sn" data-view="koleksi"><i>♡</i>Koleksiku <b id="wlCount">0</b></button>
+    </nav>
+    <p class="side-foot">mockup v2<br>konten placeholder</p>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+    <header class="topbar">
+      <label class="search"><span>⌕</span><input id="q" type="text" placeholder="Cari anime, donghua, manga…" autocomplete="off"></label>
+    </header>
+
+    <!-- BERANDA -->
+    <section class="view active" id="view-beranda">
+      <h2>Lanjutkan</h2>
+      <div class="rail" id="continueRow"></div>
+      <div class="sec-row"><h2>Trending minggu ini</h2><button class="more" data-view="jelajah">Lihat semua →</button></div>
+      <div class="grid" id="trendGrid"></div>
+      <h2>Tayang hari ini</h2>
+      <div class="today" id="todayRow"></div>
+    </section>
+
+    <!-- JELAJAH -->
+    <section class="view" id="view-jelajah">
+      <h2>Jelajah</h2>
+      <div class="chips" id="catChips">
+        <button class="chip on" data-cat="semua">Semua</button>
+        <button class="chip" data-cat="anime">Anime</button>
+        <button class="chip" data-cat="donghua">Donghua</button>
+        <button class="chip" data-cat="manga">Manga</button>
+      </div>
+      <p class="hint" id="jelajahHint" hidden></p>
+      <div class="grid" id="allGrid"></div>
+    </section>
+
+    <!-- JADWAL -->
+    <section class="view" id="view-jadwal">
+      <h2>Jadwal rilis</h2>
+      <div class="chips" id="dayChips"></div>
+      <div class="sched" id="schedList"></div>
+    </section>
+
+    <!-- KOLEKSI -->
+    <section class="view" id="view-koleksi">
+      <h2>Koleksiku</h2>
+      <p class="hint" id="wlHint">Judul yang kamu simpan muncul di sini.</p>
+      <div class="grid" id="wlGrid"></div>
+    </section>
+  </main>
+
+  <!-- ===== BOTTOM NAV (mobile) ===== -->
+  <nav class="bottomnav">
+    <button class="bn active" data-view="beranda">◉<small>Beranda</small></button>
+    <button class="bn" data-view="jelajah">▦<small>Jelajah</small></button>
+    <button class="bn" data-view="jadwal">◷<small>Jadwal</small></button>
+    <button class="bn" data-view="koleksi">♡<small>Koleksi</small></button>
   </nav>
-  <div class="nav-right">
-    <label class="search">
-      <span>⌕</span>
-      <input id="searchInput" type="text" placeholder="Cari judul…" autocomplete="off">
-    </label>
-    <a class="btn-ink" href="#top">Masuk</a>
-    <button class="burger" id="burger" aria-label="Menu">☰</button>
-  </div>
-</header>
+</div>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-copy">
-    <p class="eyebrow"><span class="dot"></span>NONTON &amp; BACA — TANPA IKLAN</p>
-    <h1>NONTON ANIME.<br>BACA MANGA.<br><span class="hl">NOL IKLAN JUDOL.</span></h1>
-    <p class="sub">Semua episode &amp; chapter dalam satu tempat. Bersih, cepat, tanpa pop-up, tanpa watermark aneh-aneh.</p>
-    <div class="cta-row">
-      <a class="btn-ink big" href="#trending">Jelajahi →</a>
-      <a class="btn-paper big" href="#jadwal">Jadwal Rilis</a>
-    </div>
-    <p class="stats">12.400+ episode &nbsp;•&nbsp; 8.900+ chapter &nbsp;•&nbsp; update harian</p>
-  </div>
-  <div class="hero-art">
-    <div class="panel-tilt">
-      <div class="panel-screen">
-        <div class="play">▶</div>
-        <span class="tag-live">SEDANG TAYANG</span>
-      </div>
-      <div class="panel-meta">
-        <strong>Judul Unggulan</strong>
-        <span>EP 12 • Sub Indo</span>
+<!-- ===== DETAIL MODAL ===== -->
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" role="dialog" aria-modal="true">
+    <button class="close" id="closeSheet">✕</button>
+    <div class="sheet-top">
+      <div class="sheet-art" id="sheetArt"></div>
+      <div class="sheet-info">
+        <span class="pill" id="sheetCat">ANIME</span>
+        <h3 id="sheetTitle">Judul</h3>
+        <p class="meta" id="sheetMeta">EP 24 • ★ 4.9</p>
+        <p class="syn" id="sheetSyn"></p>
+        <div class="sheet-actions">
+          <button class="btn-primary" id="sheetWatch">▶ Mulai</button>
+          <button class="btn-ghost" id="sheetSave">♡ Simpan</button>
+        </div>
       </div>
     </div>
-    <div class="sfx">DOK!</div>
+    <h4 id="epLabel">Episode</h4>
+    <div class="eps" id="epList"></div>
   </div>
-</section>
-
-<!-- ============ MARQUEE ============ -->
-<div class="marquee"><div class="marquee-track">
-  <span>TANPA IKLAN ✦ TANPA JUDOL ✦ UPDATE HARIAN ✦ SUB INDO ✦&nbsp;</span>
-  <span>TANPA IKLAN ✦ TANPA JUDOL ✦ UPDATE HARIAN ✦ SUB INDO ✦&nbsp;</span>
-</div></div>
-
-<!-- ============ TRENDING ============ -->
-<section class="section" id="trending">
-  <div class="sec-head">
-    <div>
-      <p class="eyebrow red">● MINGGU INI</p>
-      <h2>TRENDING.</h2>
-    </div>
-    <a class="link-more" href="#trending">Lihat semua →</a>
-  </div>
-  <p class="search-hint" id="searchHint" hidden></p>
-  <div class="cards" id="cards">
-    <article class="card" data-title="judul anime a" data-cat="anime">
-      <div class="card-art a1"><span class="rank">1</span></div>
-      <div class="card-body">
-        <span class="chip">ANIME</span>
-        <h3>Judul Anime A</h3>
-        <p>EP 24 • ★ 4.9</p>
-        <a href="#trending">▶ Tonton</a>
-      </div>
-    </article>
-    <article class="card" data-title="judul donghua b" data-cat="donghua">
-      <div class="card-art a2"><span class="rank">2</span></div>
-      <div class="card-body">
-        <span class="chip">DONGHUA</span>
-        <h3>Judul Donghua B</h3>
-        <p>EP 40 • ★ 4.8</p>
-        <a href="#trending">▶ Tonton</a>
-      </div>
-    </article>
-    <article class="card" data-title="judul manga c" data-cat="manga">
-      <div class="card-art a3"><span class="rank">3</span></div>
-      <div class="card-body">
-        <span class="chip">MANGA</span>
-        <h3>Judul Manga C</h3>
-        <p>CH 112 • ★ 4.9</p>
-        <a href="#manga">▶ Baca</a>
-      </div>
-    </article>
-    <article class="card" data-title="judul anime d" data-cat="anime">
-      <div class="card-art a4"><span class="rank">4</span></div>
-      <div class="card-body">
-        <span class="chip">ANIME</span>
-        <h3>Judul Anime D</h3>
-        <p>EP 8 • ★ 4.7</p>
-        <a href="#trending">▶ Tonton</a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ============ JADWAL ============ -->
-<section class="schedule" id="jadwal">
-  <p class="eyebrow red">● KALENDER</p>
-  <h2>JADWAL RILIS.</h2>
-  <div class="rows">
-    <div class="row">
-      <span class="day hot">SENIN</span>
-      <div><strong>Judul Anime A — EP 25</strong><small>17:00 WIB • Sub Indo</small></div>
-      <span class="go">→</span>
-    </div>
-    <div class="row alt">
-      <span class="day">SELASA</span>
-      <div><strong>Judul Donghua B — EP 41</strong></div>
-      <span class="go">→</span>
-    </div>
-    <div class="row">
-      <span class="day">RABU</span>
-      <div><strong>Judul Manga C — CH 113</strong><small>Full color • Indo</small></div>
-      <span class="go">→</span>
-    </div>
-    <div class="row alt">
-      <span class="day">KAMIS</span>
-      <div><strong>Judul Anime D — EP 9</strong></div>
-      <span class="go">→</span>
-    </div>
-  </div>
-  <a class="link-more light" href="#jadwal">Lihat seminggu penuh →</a>
-</section>
-
-<!-- ============ MANGA SPOTLIGHT ============ -->
-<section class="section" id="manga">
-  <p class="eyebrow red">● SPOTLIGHT</p>
-  <h2>BACA MANGA.</h2>
-  <a class="spot" href="#manga">
-    <span class="pill">FULL COLOR</span>
-    <strong>8.900+ chapter • Manhwa • Manhua • Manga — full Indo</strong>
-    <span class="go">→</span>
-  </a>
-  <p class="note">Mockup UI/UX v1 — konten &amp; artwork masih placeholder.</p>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div>
-    <a class="logo light" href="#top">MANGA<span class="red">INK</span><i>.</i></a>
-    <p>Nonton anime, donghua &amp; baca manga — tanpa iklan, tanpa judol.</p>
-  </div>
-  <div class="foot-links">
-    <a href="#top">Tentang</a><a href="#top">Bantuan</a><a href="#top">DMCA</a>
-  </div>
-  <p class="copy">© 2026 — dibuat dengan ♥ tanpa iklan</p>
-</footer>
+</div>
 
 <script src="app.js"></script>
 </body>
