@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>animehub — v2</title>
+<title>animehub — v3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,82 +11,65 @@
 </head>
 <body>
 
-<div class="app">
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="side">
-    <a class="logo" href="#" data-view="beranda">animehub<span>.</span></a>
-    <nav class="side-nav">
-      <button class="sn active" data-view="beranda"><i>◉</i>Beranda</button>
-      <button class="sn" data-view="jelajah"><i>▦</i>Jelajah</button>
-      <button class="sn" data-view="jadwal"><i>◷</i>Jadwal</button>
-      <button class="sn" data-view="koleksi"><i>♡</i>Koleksiku <b id="wlCount">0</b></button>
-    </nav>
-    <p class="side-foot">mockup v2<br>konten placeholder</p>
-  </aside>
+<header class="top">
+  <a class="logo" href="#">animehub<span>.</span></a>
+  <label class="search"><span>⌕</span><input id="q" type="text" placeholder="Cari judul…" autocomplete="off"></label>
+  <button class="koleksi-btn" id="koleksiBtn">♡ <b id="wlCount">0</b></button>
+</header>
 
-  <!-- ===== MAIN ===== -->
-  <main class="main">
-    <header class="topbar">
-      <label class="search"><span>⌕</span><input id="q" type="text" placeholder="Cari anime, donghua, manga…" autocomplete="off"></label>
-    </header>
+<main>
+  <!-- HARI -->
+  <section class="dayhead">
+    <p class="kicker" id="dateLine">HARI INI</p>
+    <h1 id="dayName">Senin</h1>
+    <p class="sub" id="daySub"></p>
+    <div class="days" id="dayPills"></div>
+  </section>
 
-    <!-- BERANDA -->
-    <section class="view active" id="view-beranda">
-      <h2>Lanjutkan</h2>
-      <div class="rail" id="continueRow"></div>
-      <div class="sec-row"><h2>Trending minggu ini</h2><button class="more" data-view="jelajah">Lihat semua →</button></div>
-      <div class="grid" id="trendGrid"></div>
-      <h2>Tayang hari ini</h2>
-      <div class="today" id="todayRow"></div>
-    </section>
+  <!-- TAYANG -->
+  <section>
+    <h2>Tayang <span id="airDay">hari ini</span></h2>
+    <div class="air" id="airRow"></div>
+  </section>
 
-    <!-- JELAJAH -->
-    <section class="view" id="view-jelajah">
-      <h2>Jelajah</h2>
-      <div class="chips" id="catChips">
-        <button class="chip on" data-cat="semua">Semua</button>
-        <button class="chip" data-cat="anime">Anime</button>
-        <button class="chip" data-cat="donghua">Donghua</button>
-        <button class="chip" data-cat="manga">Manga</button>
-      </div>
-      <p class="hint" id="jelajahHint" hidden></p>
-      <div class="grid" id="allGrid"></div>
-    </section>
+  <!-- LANJUTKAN -->
+  <section>
+    <h2>Lanjutkan</h2>
+    <div class="rail" id="contRow"></div>
+  </section>
 
-    <!-- JADWAL -->
-    <section class="view" id="view-jadwal">
-      <h2>Jadwal rilis</h2>
-      <div class="chips" id="dayChips"></div>
-      <div class="sched" id="schedList"></div>
-    </section>
+  <!-- SEMUA -->
+  <section>
+    <div class="sec-row"><h2>Semua judul</h2></div>
+    <div class="chips" id="catChips">
+      <button class="chip on" data-cat="semua">Semua</button>
+      <button class="chip" data-cat="anime">Anime</button>
+      <button class="chip" data-cat="donghua">Donghua</button>
+      <button class="chip" data-cat="manga">Manga</button>
+    </div>
+    <p class="hint" id="hint" hidden></p>
+    <div class="grid" id="grid"></div>
+  </section>
 
-    <!-- KOLEKSI -->
-    <section class="view" id="view-koleksi">
-      <h2>Koleksiku</h2>
-      <p class="hint" id="wlHint">Judul yang kamu simpan muncul di sini.</p>
-      <div class="grid" id="wlGrid"></div>
-    </section>
-  </main>
+  <!-- KOLEKSI -->
+  <section id="wlSection" hidden>
+    <h2>Koleksiku</h2>
+    <div class="grid" id="wlGrid"></div>
+  </section>
 
-  <!-- ===== BOTTOM NAV (mobile) ===== -->
-  <nav class="bottomnav">
-    <button class="bn active" data-view="beranda">◉<small>Beranda</small></button>
-    <button class="bn" data-view="jelajah">▦<small>Jelajah</small></button>
-    <button class="bn" data-view="jadwal">◷<small>Jadwal</small></button>
-    <button class="bn" data-view="koleksi">♡<small>Koleksi</small></button>
-  </nav>
-</div>
+  <p class="foot-note">mockup v3 — konten placeholder</p>
+</main>
 
-<!-- ===== DETAIL MODAL ===== -->
+<!-- DETAIL -->
 <div class="overlay" id="overlay" hidden>
-  <div class="sheet" role="dialog" aria-modal="true">
+  <div class="sheet">
     <button class="close" id="closeSheet">✕</button>
     <div class="sheet-top">
       <div class="sheet-art" id="sheetArt"></div>
-      <div class="sheet-info">
+      <div>
         <span class="pill" id="sheetCat">ANIME</span>
-        <h3 id="sheetTitle">Judul</h3>
-        <p class="meta" id="sheetMeta">EP 24 • ★ 4.9</p>
+        <h3 id="sheetTitle"></h3>
+        <p class="meta" id="sheetMeta"></p>
         <p class="syn" id="sheetSyn"></p>
         <div class="sheet-actions">
           <button class="btn-primary" id="sheetWatch">▶ Mulai</button>
