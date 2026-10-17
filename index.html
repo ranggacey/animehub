@@ -3,82 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>animehub — v3</title>
+<title>animehub — v4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="top">
-  <a class="logo" href="#">animehub<span>.</span></a>
-  <label class="search"><span>⌕</span><input id="q" type="text" placeholder="Cari judul…" autocomplete="off"></label>
-  <button class="koleksi-btn" id="koleksiBtn">♡ <b id="wlCount">0</b></button>
+<nav class="nav">
+  <a class="logo" href="#top">animehub<span>.</span></a>
+  <div class="links">
+    <a href="#top10">Top 10</a>
+    <a href="#jelajah">Jelajah</a>
+    <a href="#jadwal">Jadwal</a>
+  </div>
+  <button class="sbtn" id="searchBtn" aria-label="Cari">⌕</button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="slides" id="slides"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-inner">
+    <p class="kicker" id="hKick">SEDANG TAYANG</p>
+    <p class="jp" id="hJp">物語</p>
+    <h1 id="hTitle">Judul</h1>
+    <p class="meta" id="hMeta"></p>
+    <p class="syn" id="hSyn"></p>
+    <div class="hero-act">
+      <button class="btn-play" id="hWatch">▶ Tonton</button>
+      <button class="btn-line" id="hDetail">Detail</button>
+      <button class="btn-save" id="hSave">♡</button>
+    </div>
+  </div>
+  <div class="hero-nav">
+    <button id="prevSlide">←</button>
+    <div class="dots" id="dots"></div>
+    <button id="nextSlide">→</button>
+  </div>
 </header>
 
-<main>
-  <!-- HARI -->
-  <section class="dayhead">
-    <p class="kicker" id="dateLine">HARI INI</p>
-    <h1 id="dayName">Senin</h1>
-    <p class="sub" id="daySub"></p>
-    <div class="days" id="dayPills"></div>
-  </section>
+<!-- TOP 10 -->
+<section id="top10">
+  <h2>Top 10 <span>minggu ini</span></h2>
+  <div class="rail" id="topRail"></div>
+</section>
 
-  <!-- TAYANG -->
-  <section>
-    <h2>Tayang <span id="airDay">hari ini</span></h2>
-    <div class="air" id="airRow"></div>
-  </section>
+<!-- JELAJAH BENTO -->
+<section id="jelajah">
+  <h2>Jelajah</h2>
+  <div class="chips" id="catChips">
+    <button class="chip on" data-cat="semua">Semua</button>
+    <button class="chip" data-cat="anime">Anime</button>
+    <button class="chip" data-cat="donghua">Donghua</button>
+    <button class="chip" data-cat="manga">Manga</button>
+  </div>
+  <div class="bento" id="bento"></div>
+</section>
 
-  <!-- LANJUTKAN -->
-  <section>
-    <h2>Lanjutkan</h2>
-    <div class="rail" id="contRow"></div>
-  </section>
+<!-- JADWAL -->
+<section id="jadwal">
+  <h2>Jadwal <span>rilis</span></h2>
+  <div class="days" id="dayPills"></div>
+  <div class="sched" id="sched"></div>
+</section>
 
-  <!-- SEMUA -->
-  <section>
-    <div class="sec-row"><h2>Semua judul</h2></div>
-    <div class="chips" id="catChips">
-      <button class="chip on" data-cat="semua">Semua</button>
-      <button class="chip" data-cat="anime">Anime</button>
-      <button class="chip" data-cat="donghua">Donghua</button>
-      <button class="chip" data-cat="manga">Manga</button>
-    </div>
-    <p class="hint" id="hint" hidden></p>
-    <div class="grid" id="grid"></div>
-  </section>
+<p class="foot-note">mockup v4 — konten placeholder</p>
 
-  <!-- KOLEKSI -->
-  <section id="wlSection" hidden>
-    <h2>Koleksiku</h2>
-    <div class="grid" id="wlGrid"></div>
-  </section>
-
-  <p class="foot-note">mockup v3 — konten placeholder</p>
-</main>
+<!-- SEARCH -->
+<div class="soverlay" id="soverlay" hidden>
+  <div class="sbox">
+    <input id="sq" type="text" placeholder="Ketik judul…" autocomplete="off">
+    <div class="sres" id="sres"></div>
+  </div>
+</div>
 
 <!-- DETAIL -->
 <div class="overlay" id="overlay" hidden>
   <div class="sheet">
     <button class="close" id="closeSheet">✕</button>
-    <div class="sheet-top">
-      <div class="sheet-art" id="sheetArt"></div>
-      <div>
-        <span class="pill" id="sheetCat">ANIME</span>
-        <h3 id="sheetTitle"></h3>
-        <p class="meta" id="sheetMeta"></p>
-        <p class="syn" id="sheetSyn"></p>
-        <div class="sheet-actions">
-          <button class="btn-primary" id="sheetWatch">▶ Mulai</button>
-          <button class="btn-ghost" id="sheetSave">♡ Simpan</button>
-        </div>
+    <div class="sheet-bg" id="sheetBg"></div>
+    <div class="sheet-body">
+      <span class="pill" id="sheetCat">ANIME</span>
+      <h3 id="sheetTitle"></h3>
+      <p class="meta" id="sheetMeta"></p>
+      <p class="syn" id="sheetSyn"></p>
+      <div class="sheet-actions">
+        <button class="btn-play" id="sheetWatch">▶ Mulai</button>
+        <button class="btn-line" id="sheetSave">♡ Simpan</button>
       </div>
+      <h4 id="epLabel">Episode</h4>
+      <div class="eps" id="epList"></div>
     </div>
-    <h4 id="epLabel">Episode</h4>
-    <div class="eps" id="epList"></div>
   </div>
 </div>
 
