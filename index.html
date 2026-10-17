@@ -2,80 +2,42 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>animehub — v4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>animehub — v5 feed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="nav">
-  <a class="logo" href="#top">animehub<span>.</span></a>
-  <div class="links">
-    <a href="#top10">Top 10</a>
-    <a href="#jelajah">Jelajah</a>
-    <a href="#jadwal">Jadwal</a>
+<nav class="top">
+  <span class="logo">animehub<span>.</span></span>
+  <div class="top-right">
+    <button class="tbtn" id="searchBtn" aria-label="Cari">⌕</button>
+    <button class="tbtn" id="wlBtn" aria-label="Koleksi">♡<b id="wlCount">0</b></button>
   </div>
-  <button class="sbtn" id="searchBtn" aria-label="Cari">⌕</button>
 </nav>
 
-<!-- HERO -->
-<header class="hero" id="top">
-  <div class="slides" id="slides"></div>
-  <div class="hero-grad"></div>
-  <div class="hero-inner">
-    <p class="kicker" id="hKick">SEDANG TAYANG</p>
-    <p class="jp" id="hJp">物語</p>
-    <h1 id="hTitle">Judul</h1>
-    <p class="meta" id="hMeta"></p>
-    <p class="syn" id="hSyn"></p>
-    <div class="hero-act">
-      <button class="btn-play" id="hWatch">▶ Tonton</button>
-      <button class="btn-line" id="hDetail">Detail</button>
-      <button class="btn-save" id="hSave">♡</button>
-    </div>
-  </div>
-  <div class="hero-nav">
-    <button id="prevSlide">←</button>
-    <div class="dots" id="dots"></div>
-    <button id="nextSlide">→</button>
-  </div>
-</header>
+<aside class="dots" id="dots"></aside>
 
-<!-- TOP 10 -->
-<section id="top10">
-  <h2>Top 10 <span>minggu ini</span></h2>
-  <div class="rail" id="topRail"></div>
-</section>
+<main class="feed" id="feed"></main>
 
-<!-- JELAJAH BENTO -->
-<section id="jelajah">
-  <h2>Jelajah</h2>
-  <div class="chips" id="catChips">
-    <button class="chip on" data-cat="semua">Semua</button>
-    <button class="chip" data-cat="anime">Anime</button>
-    <button class="chip" data-cat="donghua">Donghua</button>
-    <button class="chip" data-cat="manga">Manga</button>
-  </div>
-  <div class="bento" id="bento"></div>
-</section>
-
-<!-- JADWAL -->
-<section id="jadwal">
-  <h2>Jadwal <span>rilis</span></h2>
-  <div class="days" id="dayPills"></div>
-  <div class="sched" id="sched"></div>
-</section>
-
-<p class="foot-note">mockup v4 — konten placeholder</p>
+<div class="hint" id="swipeHint">geser ke atas <span>↑</span></div>
 
 <!-- SEARCH -->
 <div class="soverlay" id="soverlay" hidden>
   <div class="sbox">
     <input id="sq" type="text" placeholder="Ketik judul…" autocomplete="off">
     <div class="sres" id="sres"></div>
+  </div>
+</div>
+
+<!-- KOLEKSI -->
+<div class="soverlay" id="wloverlay" hidden>
+  <div class="sbox">
+    <h3>Koleksiku</h3>
+    <div class="sres" id="wlres"></div>
   </div>
 </div>
 
