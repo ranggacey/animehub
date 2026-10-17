@@ -91,16 +91,19 @@
       return curCat === 'semua' || t.cat === curCat;
     });
     document.getElementById('bento').innerHTML = list.map(function (t, i) {
-      return '<button class="b '+(SPANS[i % SPANS.length])+' '+grad(t)+'" data-id="'+t.id+'">' +
+      return '<article class="b '+(SPANS[i % SPANS.length])+' '+grad(t)+'" data-id="'+t.id+'" tabindex="0" role="button">' +
         '<span class="badge">'+CATL[t.cat]+'</span>' +
-        '<button class="save'+(inWL(t.id)?' on':'')+'" data-save="'+t.id+'">♡</button>' +
-        '<span class="b-cap"><strong>'+t.title+'</strong><small>'+t.info+'</small></span></button>';
+        '<button class="save'+(inWL(t.id)?' on':'')+'" data-save="'+t.id+'" aria-label="Simpan">♡</button>' +
+        '<span class="b-cap"><strong>'+t.title+'</strong><small>'+t.info+'</small></span></article>';
     }).join('');
     var b = document.getElementById('bento');
     b.querySelectorAll('.b').forEach(function (el) {
       el.addEventListener('click', function (e) {
         if (e.target.closest('[data-save]')) return;
         openSheet(el.dataset.id);
+      });
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet(el.dataset.id); }
       });
     });
     b.querySelectorAll('[data-save]').forEach(function (s) {

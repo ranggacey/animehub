@@ -65,7 +65,11 @@ h2 span{color:var(--mut);font-weight:400;font-size:18px}
 .dots i.on{background:var(--ink)}
 
 /* top10 rail */
-.rail{display:flex;gap:6px;overflow-x:auto;padding:10px 0 16px;scroll-snap-type:x mandatory}
+.rail{display:flex;gap:6px;overflow-x:auto;padding:10px 0 16px;scroll-snap-type:x mandatory;
+  scrollbar-width:thin;scrollbar-color:#3a3a44 transparent}
+.rail::-webkit-scrollbar{height:8px}
+.rail::-webkit-scrollbar-track{background:transparent}
+.rail::-webkit-scrollbar-thumb{background:#3a3a44;border-radius:99px}
 .tcard{scroll-snap-align:start;display:flex;align-items:center;flex-shrink:0;cursor:pointer}
 .tnum{font-size:110px;font-weight:700;letter-spacing:-6px;line-height:1;
   color:transparent;-webkit-text-stroke:2px #3a3a44;margin-right:-14px;transition:.2s}
